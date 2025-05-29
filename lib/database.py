@@ -1,4 +1,4 @@
-
+# database.py
 from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, func
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -7,7 +7,7 @@ import datetime
 Base = declarative_base()
 
 class Drink(Base):
-    _tablename_ = 'drinks'
+    __tablename__ = 'drinks'
 
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer)
@@ -20,7 +20,7 @@ class Drink(Base):
     status = Column(Integer, default=1)
     
 class User(Base):
-    _tablename_ = 'users'
+    __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
