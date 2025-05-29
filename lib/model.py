@@ -1,19 +1,22 @@
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.orm import declarative_base
 import datetime
 
-Base = declarative_base()
+class DrinkEntry:
+    def _init_(self, drink, category, quantity=1, volume_oz=None,
+                 date_added=None, date_consumed=None, status=None):
+        self.drink = drink
+        self.category = category
+        self.quantity = quantity
+        self.volume_oz = volume_oz
+        self.date_added = date_added if date_added else datetime.datetime.now()
+        self.date_consumed = date_consumed
+        self.status = status if status else 1
 
-class DrinkEntry(Base):
-    _tablename_ = 'drinks'
+    def _repr_(self) -> str:
+        return f"({self.drink}, {self.category}, {self.quantity}x{self.volume_oz}oz, {self.status})"
 
-    id = Column(Integer, primary_key=True)
-    drink = Column(String)
-    category = Column(String)
-    date_added = Column(DateTime, default=datetime.datetime.utcnow)
-    date_consumed = Column(DateTime, nullable=True)
-    status = Column(Integer, default=1)  # 1 = not consumed, 2 = consumed
-    position = Column(Integer)
-
-    def _repr_(self):
-        return f"<DrinkEntry(drink={self.drink}, category={self.category}, date_added={self.date_added}, status={self.status})>"
+class UserProfile:
+    def _init_(self, name, gender, weight):
+        self.name = name
+        self.gender = gender
+        self.weight = weight
+        self.id = None
