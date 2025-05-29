@@ -67,11 +67,13 @@ def add(
     if quantity is None:
         quantity = typer.prompt("Enter number of drinks", type=int, default=1)
     if amount is None:
-        amount = typer.prompt("Enter drink amount", type=float)
+        amount = typer.prompt("Enter drink amount", type=int)
     if unit is None:
-        unit = typer.prompt("Enter unit (oz/ml/l)", type=str, 
-                          default="oz", show_choices=True, 
-                          choices=["oz", "ml", "l"])
+        unit = typer.prompt("Enter unit (oz/ml/l)", type=str, default="oz")
+        if unit not in ["oz", "ml", "l"]:
+            typer.echo("Invalid unit. Please enter oz, ml, or l.")
+            raise typer.Exit()
+
 
 
     volume_oz = convert_to_oz(amount, unit)
