@@ -1,4 +1,4 @@
-# from pptx import Presentation
+from pptx import Presentation
 import pptx
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
@@ -54,7 +54,7 @@ def create_presentation():
     left = Inches(1)
     top = Inches(1.5)
     width = Inches(8)
-    pic = slide.shapes.add_picture("screenshots/add_drink.png", left, top, width=width)
+    pic = slide.shapes.add_picture("images/addboozze.png", left, top, width=width)
 #    tuadd picha
     
     
@@ -67,7 +67,7 @@ def create_presentation():
     p.font.bold = True
     
 
-    pic = slide.shapes.add_picture("screenshots/view_drinks.png", left, top, width=width)
+    pic = slide.shapes.add_picture("images/consume.png", left, top, width=width)
     # slide 5
     slide_layout = prs.slide_layouts[1]
     slide = prs.slides.add_slide(slide_layout)
